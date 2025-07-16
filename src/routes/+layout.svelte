@@ -1,7 +1,10 @@
 <script lang="ts">
 	import '../app.css';
+	import MobileLayout from '$lib/components/mobile/MobileLayout.svelte';
 	
 	let { children } = $props();
 </script>
 
-{@render children()}
+<MobileLayout>
+	{@render children()}
+</MobileLayout>
