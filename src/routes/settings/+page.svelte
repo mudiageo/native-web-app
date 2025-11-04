@@ -213,21 +213,4 @@
 			<p class="mt-2 text-xs">v1.0.0</p>
 		</div>
 	</section>
-	
-	<!-- Dangerous Actions -->
-	<section>
-		<Card class="p-4 border-destructive/20">
-			<h3 class="font-semibold text-destructive mb-4">Danger Zone</h3>
-			<div class="space-y-3">
-				<Button variant="destructive" class="w-full">
-					<span class="mr-2">⚠️</span>
-					Reset All Settings
-				</Button>
-				<Button variant="outline" class="w-full border-destructive text-destructive hover:bg-destructive hover:text-destructive-foreground">
-					<span class="mr-2">🚪</span>
-					Sign Out
-				</Button>
-			</div>
-		</Card>
-	</section>
 </div>
