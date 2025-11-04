@@ -3,10 +3,51 @@
 	<head>
 		<meta charset="utf-8" />
 		<link rel="icon" href="%sveltekit.assets%/favicon.svg" />
-		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, viewport-fit=cover" />
+		
+		<!-- PWA Meta Tags -->
+		<meta name="description" content="A comprehensive native-like mobile web application built with SvelteKit" />
+		<meta name="theme-color" content="#3b82f6" />
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="default" />
+		<meta name="apple-mobile-web-app-title" content="Native Web App" />
+		<meta name="mobile-web-app-capable" content="yes" />
+		<meta name="application-name" content="Native Web App" />
+		
+		<!-- PWA Manifest -->
+		<link rel="manifest" href="/manifest.json" />
+		
+		<!-- iOS Specific -->
+		<meta name="apple-touch-fullscreen" content="yes" />
+		<link rel="apple-touch-icon" href="/icon-192.png" />
+		<link rel="apple-touch-icon" sizes="152x152" href="/icon-192.png" />
+		<link rel="apple-touch-icon" sizes="180x180" href="/icon-192.png" />
+		
+		<!-- Splash Screen -->
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+		
+		<!-- Microsoft -->
+		<meta name="msapplication-TileImage" content="/icon-192.png" />
+		<meta name="msapplication-TileColor" content="#3b82f6" />
+		
 		%sveltekit.head%
 	</head>
 	<body data-sveltekit-preload-data="hover">
 		<div style="display: contents">%sveltekit.body%</div>
+		
+		<!-- Service Worker Registration -->
+		<script>
+			if ('serviceWorker' in navigator) {
+				window.addEventListener('load', () => {
+					navigator.serviceWorker.register('/sw.js')
+						.then((registration) => {
+							console.log('SW registered: ', registration);
+						})
+						.catch((registrationError) => {
+							console.log('SW registration failed: ', registrationError);
+						});
+				});
+			}
+		</script>
 	</body>
 </html>
