@@ -3,10 +3,12 @@
 	import { Button } from '$lib/components/ui/button';
 	import { Switch } from '$lib/components/ui/switch';
 	import { Separator } from '$lib/components/ui/separator';
+	import { User, Lock, Link, Trash2, Shield, Fingerprint, Eye, Activity, MapPin, Bell, Mail, MessageSquare, Megaphone, Palette, Moon, Zap, Sun, Type, HelpCircle, Book, MessageCircle, Bug, Lightbulb, Info, Smartphone, FileText, Scale } from 'lucide-svelte';
+	import type { ComponentType } from 'svelte';
 	
 	interface SettingItem {
 		label: string;
-		icon: string;
+		icon: ComponentType;
 		action?: string;
 		toggle?: string;
 		danger?: boolean;
@@ -40,68 +42,68 @@
 	
 	const settingSections: Array<{
 		title: string;
-		icon: string;
+		icon: ComponentType;
 		items: SettingItem[];
 	}> = [
 		{
 			title: 'Account',
-			icon: '👤',
+			icon: User,
 			items: [
-				{ label: 'Profile Information', action: 'profile', icon: '📝' },
-				{ label: 'Change Password', action: 'password', icon: '🔐' },
-				{ label: 'Connected Accounts', action: 'accounts', icon: '🔗' },
-				{ label: 'Delete Account', action: 'delete', icon: '🗑️', danger: true }
+				{ label: 'Profile Information', action: 'profile', icon: User },
+				{ label: 'Change Password', action: 'password', icon: Lock },
+				{ label: 'Connected Accounts', action: 'accounts', icon: Link },
+				{ label: 'Delete Account', action: 'delete', icon: Trash2, danger: true }
 			]
 		},
 		{
 			title: 'Privacy & Security',
-			icon: '🔒',
+			icon: Shield,
 			items: [
-				{ label: 'Two-Factor Authentication', toggle: 'security.twoFactor', icon: '🛡️' },
-				{ label: 'Biometric Login', toggle: 'security.biometric', icon: '👆' },
-				{ label: 'Profile Visibility', toggle: 'privacy.profileVisible', icon: '👁️' },
-				{ label: 'Activity Tracking', toggle: 'privacy.activityTracking', icon: '📊' },
-				{ label: 'Location Sharing', toggle: 'privacy.locationSharing', icon: '📍' }
+				{ label: 'Two-Factor Authentication', toggle: 'security.twoFactor', icon: Shield },
+				{ label: 'Biometric Login', toggle: 'security.biometric', icon: Fingerprint },
+				{ label: 'Profile Visibility', toggle: 'privacy.profileVisible', icon: Eye },
+				{ label: 'Activity Tracking', toggle: 'privacy.activityTracking', icon: Activity },
+				{ label: 'Location Sharing', toggle: 'privacy.locationSharing', icon: MapPin }
 			]
 		},
 		{
 			title: 'Notifications',
-			icon: '🔔',
+			icon: Bell,
 			items: [
-				{ label: 'Push Notifications', toggle: 'notifications.push', icon: '📱' },
-				{ label: 'Email Notifications', toggle: 'notifications.email', icon: '📧' },
-				{ label: 'SMS Notifications', toggle: 'notifications.sms', icon: '💬' },
-				{ label: 'Marketing Messages', toggle: 'notifications.marketing', icon: '📢' }
+				{ label: 'Push Notifications', toggle: 'notifications.push', icon: Bell },
+				{ label: 'Email Notifications', toggle: 'notifications.email', icon: Mail },
+				{ label: 'SMS Notifications', toggle: 'notifications.sms', icon: MessageSquare },
+				{ label: 'Marketing Messages', toggle: 'notifications.marketing', icon: Megaphone }
 			]
 		},
 		{
 			title: 'Appearance',
-			icon: '🎨',
+			icon: Palette,
 			items: [
-				{ label: 'Dark Mode', toggle: 'appearance.darkMode', icon: '🌙' },
-				{ label: 'Reduced Motion', toggle: 'appearance.reducedMotion', icon: '⚡' },
-				{ label: 'High Contrast', toggle: 'appearance.highContrast', icon: '🔆' },
-				{ label: 'Font Size', action: 'fontsize', icon: '🔤' }
+				{ label: 'Dark Mode', toggle: 'appearance.darkMode', icon: Moon },
+				{ label: 'Reduced Motion', toggle: 'appearance.reducedMotion', icon: Zap },
+				{ label: 'High Contrast', toggle: 'appearance.highContrast', icon: Sun },
+				{ label: 'Font Size', action: 'fontsize', icon: Type }
 			]
 		},
 		{
 			title: 'Support',
-			icon: '❓',
+			icon: HelpCircle,
 			items: [
-				{ label: 'Help Center', action: 'help', icon: '📚' },
-				{ label: 'Contact Support', action: 'contact', icon: '💬' },
-				{ label: 'Bug Report', action: 'bug', icon: '🐛' },
-				{ label: 'Feature Request', action: 'feature', icon: '💡' }
+				{ label: 'Help Center', action: 'help', icon: Book },
+				{ label: 'Contact Support', action: 'contact', icon: MessageCircle },
+				{ label: 'Bug Report', action: 'bug', icon: Bug },
+				{ label: 'Feature Request', action: 'feature', icon: Lightbulb }
 			]
 		},
 		{
 			title: 'About',
-			icon: 'ℹ️',
+			icon: Info,
 			items: [
-				{ label: 'App Version', action: 'version', icon: '📱', value: 'v1.0.0' },
-				{ label: 'Terms of Service', action: 'terms', icon: '📋' },
-				{ label: 'Privacy Policy', action: 'privacy', icon: '📄' },
-				{ label: 'Open Source Licenses', action: 'licenses', icon: '⚖️' }
+				{ label: 'App Version', action: 'version', icon: Smartphone, value: 'v1.0.0' },
+				{ label: 'Terms of Service', action: 'terms', icon: FileText },
+				{ label: 'Privacy Policy', action: 'privacy', icon: FileText },
+				{ label: 'Open Source Licenses', action: 'licenses', icon: Scale }
 			]
 		}
 	];
@@ -140,61 +142,75 @@
 	<title>Settings - Native Web App</title>
 </svelte:head>
 
-<div class="p-4 space-y-6 pb-20">
+<div class="p-6 space-y-6 pb-24">
 	<!-- Header -->
 	<section class="text-center py-4">
-		<h1 class="text-2xl font-bold mb-2">Settings</h1>
+		<h1 class="text-3xl font-bold mb-2">Settings</h1>
 		<p class="text-muted-foreground">Customize your app experience</p>
 	</section>
 	
 	<!-- Settings Sections -->
 	{#each settingSections as section}
 		<section>
-			<div class="flex items-center space-x-2 mb-3">
-				<span class="text-lg">{section.icon}</span>
-				<h2 class="text-lg font-semibold">{section.title}</h2>
+			<div class="flex items-center space-x-2 mb-4 px-1">
+				<div class="flex items-center justify-center w-8 h-8 rounded-lg bg-primary/10 text-primary">
+					<svelte:component this={section.icon} class="w-4 h-4" />
+				</div>
+				<h2 class="text-base font-semibold">{section.title}</h2>
 			</div>
 			
-			<Card class="p-0">
-				{#each section.items as item, index}
-					<div class="p-4 {index < section.items.length - 1 ? 'border-b border-border' : ''}">
-						<div class="flex items-center justify-between">
-							<div class="flex items-center space-x-3">
-								<span class="text-lg">{item.icon}</span>
-								<div>
-									<p class="font-medium {item.danger ? 'text-destructive' : ''}">{item.label}</p>
-									{#if item.value}
-										<p class="text-sm text-muted-foreground">{item.value}</p>
-									{/if}
+			<Card class="overflow-hidden border-border/50">
+				{#each section.items as item, i}
+					{#if item.toggle}
+						<div class={`flex items-center justify-between p-4 ${i < section.items.length - 1 ? 'border-b border-border/50' : ''}`}>
+							<div class="flex items-center space-x-3 flex-1">
+								<div class="flex items-center justify-center w-10 h-10 rounded-xl bg-accent/50">
+									<svelte:component this={item.icon} class="w-5 h-5 text-muted-foreground" />
 								</div>
+								<span class="font-medium text-sm">{item.label}</span>
 							</div>
-							
-							{#if item.toggle}
-								<Switch
-									checked={getToggleValue(item.toggle)}
-									onCheckedChange={(checked) => setToggleValue(item.toggle!, checked)}
-								/>
-							{:else if item.action}
-								<button
-									onclick={() => handleAction(item.action!)}
-									class="text-muted-foreground hover:text-foreground transition-colors"
-								>
-									<span class="text-lg">→</span>
-								</button>
-							{/if}
+							<Switch
+								checked={getToggleValue(item.toggle)}
+								onCheckedChange={(checked) => setToggleValue(item.toggle!, checked)}
+							/>
 						</div>
-					</div>
+					{:else if item.action}
+						<button
+							type="button"
+							onclick={() => handleAction(item.action!)}
+							class={`flex items-center justify-between w-full p-4 hover:bg-accent/50 transition-all ${i < section.items.length - 1 ? 'border-b border-border/50' : ''} ${item.danger ? 'text-destructive' : ''}`}
+						>
+							<div class="flex items-center space-x-3 flex-1">
+								<div class={`flex items-center justify-center w-10 h-10 rounded-xl ${item.danger ? 'bg-destructive/10' : 'bg-accent/50'}`}>
+									<svelte:component this={item.icon} class={`w-5 h-5 ${item.danger ? 'text-destructive' : 'text-muted-foreground'}`} />
+								</div>
+								<span class={`font-medium text-sm ${item.danger ? 'font-semibold' : ''}`}>
+									{item.label}
+								</span>
+							</div>
+							{#if item.value}
+								<span class="text-xs text-muted-foreground">{item.value}</span>
+							{/if}
+						</button>
+					{/if}
 				{/each}
 			</Card>
 		</section>
 	{/each}
 	
+	<!-- Sign Out Button -->
+	<section class="pt-4">
+		<Button variant="outline" class="w-full rounded-xl py-6 text-destructive hover:bg-destructive/10 border-destructive/30">
+			Sign Out
+		</Button>
+	</section>
+	
 	<!-- App Info -->
-	<section class="text-center space-y-2 pt-6">
+	<section class="text-center space-y-2 pt-6 pb-4">
 		<div class="text-muted-foreground text-sm">
-			<p>Native Web App</p>
+			<p class="font-medium">Native Web App</p>
 			<p>Built with SvelteKit & Tailwind CSS</p>
-			<p class="mt-2">Made with ❤️ for mobile</p>
+			<p class="mt-2 text-xs">v1.0.0</p>
 		</div>
 	</section>
 	

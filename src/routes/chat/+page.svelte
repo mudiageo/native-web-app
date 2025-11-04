@@ -3,6 +3,7 @@
 	import { Button } from '$lib/components/ui/button';
 	import { Input } from '$lib/components/ui/input';
 	import { onMount } from 'svelte';
+	import { Users, Phone, Video, ArrowLeft, Paperclip, Send } from 'lucide-svelte';
 	
 	interface Message {
 		id: number;
@@ -224,12 +225,12 @@
 		<!-- Quick Actions -->
 		<section>
 			<div class="grid grid-cols-2 gap-3">
-				<Button variant="outline" class="flex items-center justify-center space-x-2 p-4">
-					<span class="text-lg">👥</span>
+				<Button variant="outline" class="flex items-center justify-center space-x-2 p-4 rounded-xl">
+					<Users class="w-5 h-5" />
 					<span>New Group</span>
 				</Button>
-				<Button variant="outline" class="flex items-center justify-center space-x-2 p-4">
-					<span class="text-lg">📞</span>
+				<Button variant="outline" class="flex items-center justify-center space-x-2 p-4 rounded-xl">
+					<Phone class="w-5 h-5" />
 					<span>Voice Call</span>
 				</Button>
 			</div>
@@ -246,7 +247,7 @@
 					class="p-2 -ml-2 rounded-lg hover:bg-accent transition-colors"
 					aria-label="Go back"
 				>
-					<span class="text-lg">←</span>
+					<ArrowLeft class="w-5 h-5" />
 				</button>
 				<div class="relative">
 					<span class="text-xl">{selectedContact.avatar}</span>
@@ -262,10 +263,10 @@
 				</div>
 				<div class="flex space-x-1">
 					<button class="p-2 rounded-lg hover:bg-accent transition-colors">
-						<span class="text-lg">📞</span>
+						<Phone class="w-5 h-5" />
 					</button>
 					<button class="p-2 rounded-lg hover:bg-accent transition-colors">
-						<span class="text-lg">📹</span>
+						<Video class="w-5 h-5" />
 					</button>
 				</div>
 			</div>
@@ -297,19 +298,16 @@
 		<!-- Message Input -->
 		<footer class="sticky bottom-16 bg-background/95 backdrop-blur-md border-t border-border p-4">
 			<form onsubmit={(e) => { e.preventDefault(); sendMessage(); }} class="flex items-center space-x-2">
-				<button type="button" class="p-2 text-muted-foreground hover:text-foreground transition-colors">
-					<span class="text-lg">📎</span>
+				<button type="button" class="p-2 text-muted-foreground hover:text-foreground transition-colors rounded-lg hover:bg-accent">
+					<Paperclip class="w-5 h-5" />
 				</button>
 				<Input
 					bind:value={newMessage}
 					placeholder="Type a message..."
 					class="flex-1"
 				/>
-				<button type="button" class="p-2 text-muted-foreground hover:text-foreground transition-colors">
-					<span class="text-lg">😊</span>
-				</button>
-				<Button type="submit" size="sm" disabled={!newMessage.trim()}>
-					<span class="text-lg">📤</span>
+				<Button type="submit" size="sm" disabled={!newMessage.trim()} class="rounded-xl">
+					<Send class="w-4 h-4" />
 				</Button>
 			</form>
 		</footer>
