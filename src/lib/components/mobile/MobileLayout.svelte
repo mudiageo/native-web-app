@@ -5,6 +5,7 @@
 	import SideDrawer from './SideDrawer.svelte';
 	import MobileHeader from './MobileHeader.svelte';
 	import PullToRefresh from './PullToRefresh.svelte';
+	import { Home, BarChart3, User, MessageCircle, Settings, Sparkles, Calendar, Map, Camera, Music, ShoppingCart, Search, Bell } from 'lucide-svelte';
 	
 	let { 
 		children,
@@ -19,34 +20,34 @@
 		showBottomNav?: boolean;
 		showHeader?: boolean;
 		onRefresh?: () => Promise<void> | void;
-		headerActions?: Array<{ icon: string; label: string; onClick: () => void }>;
+		headerActions?: Array<{ icon: any; label: string; onClick: () => void }>;
 	} = $props();
 	
 	let drawerOpen = $state(false);
 	
 	const navItems = [
-		{ href: '/', label: 'Home', icon: '🏠' },
-		{ href: '/dashboard', label: 'Dashboard', icon: '📊' },
-		{ href: '/profile', label: 'Profile', icon: '👤' },
-		{ href: '/chat', label: 'Chat', icon: '💬', badge: 3 },
-		{ href: '/settings', label: 'Settings', icon: '⚙️' }
+		{ href: '/', label: 'Home', icon: Home },
+		{ href: '/dashboard', label: 'Dashboard', icon: BarChart3 },
+		{ href: '/profile', label: 'Profile', icon: User },
+		{ href: '/chat', label: 'Chat', icon: MessageCircle, badge: 3 },
+		{ href: '/settings', label: 'Settings', icon: Settings }
 	];
 	
 	const drawerItems = [
-		{ href: '/', label: 'Home', icon: '🏠' },
-		{ href: '/dashboard', label: 'Dashboard', icon: '📊' },
-		{ href: '/profile', label: 'Profile', icon: '👤' },
-		{ href: '/chat', label: 'Chat', icon: '💬' },
-		{ href: '/social', label: 'Social Feed', icon: '📱', section: 'Social' },
-		{ href: '/calendar', label: 'Calendar', icon: '📅', section: 'Productivity' },
-		{ href: '/maps', label: 'Maps', icon: '🗺️', section: 'Productivity' },
-		{ href: '/camera', label: 'Camera', icon: '📷', section: 'Media' },
-		{ href: '/music', label: 'Music', icon: '🎵', section: 'Media' },
-		{ href: '/shopping', label: 'Shopping', icon: '🛒', section: 'Commerce' },
-		{ href: '/glass', label: 'Glass UI', icon: '✨', section: 'Showcase' },
-		{ href: '/search', label: 'Search', icon: '🔍', section: 'Tools' },
-		{ href: '/notifications', label: 'Notifications', icon: '🔔', section: 'Tools' },
-		{ href: '/settings', label: 'Settings', icon: '⚙️', section: 'Account' }
+		{ href: '/', label: 'Home', icon: Home },
+		{ href: '/dashboard', label: 'Dashboard', icon: BarChart3 },
+		{ href: '/profile', label: 'Profile', icon: User },
+		{ href: '/chat', label: 'Chat', icon: MessageCircle },
+		{ href: '/social', label: 'Social Feed', icon: Home, section: 'Social' },
+		{ href: '/calendar', label: 'Calendar', icon: Calendar, section: 'Productivity' },
+		{ href: '/maps', label: 'Maps', icon: Map, section: 'Productivity' },
+		{ href: '/camera', label: 'Camera', icon: Camera, section: 'Media' },
+		{ href: '/music', label: 'Music', icon: Music, section: 'Media' },
+		{ href: '/shopping', label: 'Shopping', icon: ShoppingCart, section: 'Commerce' },
+		{ href: '/glass', label: 'Glass UI', icon: Sparkles, section: 'Showcase' },
+		{ href: '/search', label: 'Search', icon: Search, section: 'Tools' },
+		{ href: '/notifications', label: 'Notifications', icon: Bell, section: 'Tools' },
+		{ href: '/settings', label: 'Settings', icon: Settings, section: 'Account' }
 	];
 	
 	function handleDrawerItemClick(item: any) {

@@ -1,11 +1,13 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 	import { cn } from '$lib/utils.js';
+	import { X } from 'lucide-svelte';
+	import type { ComponentType } from 'svelte';
 	
 	interface DrawerItem {
 		href: string;
 		label: string;
-		icon: string;
+		icon: ComponentType;
 		section?: string;
 	}
 	
@@ -105,7 +107,7 @@
 <aside
 	bind:this={drawerRef}
 	class={cn(
-		'fixed top-0 left-0 h-full w-80 max-w-[85vw] bg-background border-r border-border z-50',
+		'fixed top-0 left-0 h-full w-80 max-w-[85vw] bg-background border-r border-border/50 z-50 shadow-2xl',
 		'transform transition-transform duration-300 ease-out',
 		open ? 'translate-x-0' : '-translate-x-full',
 		className
@@ -118,15 +120,15 @@
 >
 	<div class="flex flex-col h-full">
 		<!-- Header -->
-		<header class="flex items-center justify-between p-4 border-b border-border">
+		<header class="flex items-center justify-between p-5 border-b border-border/50">
 			<h2 class="text-lg font-semibold">Navigation</h2>
 			<button
 				type="button"
 				onclick={() => open = false}
-				class="p-2 rounded-lg hover:bg-accent transition-colors"
+				class="p-2 rounded-xl hover:bg-accent transition-colors"
 				aria-label="Close drawer"
 			>
-				<span class="text-xl">✕</span>
+				<X class="w-5 h-5" />
 			</button>
 		</header>
 		
@@ -134,7 +136,7 @@
 		<div class="flex-1 overflow-y-auto p-4">
 			{#each Object.entries(groupedItems) as [section, sectionItems]}
 				{#if section !== 'main'}
-					<h3 class="text-sm font-medium text-muted-foreground uppercase tracking-wider mb-2 mt-6 first:mt-0">
+					<h3 class="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-3 mt-6 first:mt-0 px-1">
 						{section}
 					</h3>
 				{/if}
@@ -144,9 +146,9 @@
 						<button
 							type="button"
 							onclick={() => handleItemClick(item)}
-							class="flex items-center space-x-3 w-full p-3 rounded-lg hover:bg-accent transition-colors text-left"
+							class="flex items-center space-x-3 w-full px-3 py-3 rounded-xl hover:bg-accent transition-all duration-200 text-left group"
 						>
-							<span class="text-lg">{item.icon}</span>
+							<svelte:component this={item.icon} class="w-5 h-5 text-muted-foreground group-hover:text-foreground transition-colors" />
 							<span class="font-medium">{item.label}</span>
 						</button>
 					{/each}
@@ -155,7 +157,7 @@
 		</div>
 		
 		<!-- Footer -->
-		<footer class="p-4 border-t border-border">
+		<footer class="p-4 border-t border-border/50">
 			<div class="text-xs text-muted-foreground">
 				Native Web App v1.0
 			</div>
